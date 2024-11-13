@@ -1,0 +1,132 @@
+    Node Class:
+public abstract class Node {
+    protected int x, y; // Coordinates of the node space center
+    protected int width, height; // Dimensions of the node space
+
+    public Node(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }
+
+    // Abstract methods to be implemented by subclasses
+    public abstract void insert(int x, int y, int length, int width);
+    public abstract void delete(int x, int y);
+    public abstract void find(int x, int y);
+    public abstract void dump(int level);
+}
+  InternalNode Class:
+public class InternalNode extends Node {
+    private Node[] children;
+
+    public InternalNode(int x, int y, int width, int height) {
+        super(x, y, width, height);
+        children = new Node[4]; // Top-right, top-left, bottom-right, bottom-left quadrants
+        // Initialize child nodes (set as null initially)
+    }
+
+    @Override
+    public void insert(int x, int y, int length, int width) {
+        // Logic to find the correct quadrant and insert
+    }
+
+    @Override
+    public void delete(int x, int y) {
+        // Logic to find the correct child and delete
+    }
+
+    @Override
+    public void find(int x, int y) {
+        // Logic to find a rectangle in this node or pass to child
+    }
+
+    @Override
+    public void dump(int level) {
+        System.out.println("Level " + level + ": Rectangle at (" + this.x + ", " + this.y + "): " + this.width + "x" + this.height);
+        for (Node child : children) {
+            if (child != null) {
+                child.dump(level + 1);
+            }
+        }
+    }
+}
+LeafNode Class:
+import java.util.ArrayList;
+
+public class LeafNode extends Node {
+    private ArrayList<Rectangle> rectangles;
+
+    public LeafNode(int x, int y, int width, int height) {
+        super(x, y, width, height);
+        this.rectangles = new ArrayList<>();
+    }
+
+    @Override
+    public void insert(int x, int y, int length, int width) {
+        if (rectangles.size() < 5) {
+            rectangles.add(new Rectangle(x, y, length, width));
+        } else {
+            // Logic to split into InternalNode if necessary
+        }
+    }
+
+    @Override
+    public void delete(int x, int y) {
+        // Logic to remove a rectangle by coordinates
+    }
+
+    @Override
+    public void find(int x, int y) {
+        // Logic to search for a rectangle at coordinates
+    }
+
+    @Override
+    public void dump(int level) {
+        System.out.println("\t".repeat(level) + "Leaf Node at (" + x + ", " + y + "): " + width + "x" + height);
+        for (Rectangle rect : rectangles) {
+            System.out.println("\t".repeat(level + 1) + "Rectangle at (" + rect.getX() + ", " + rect.getY() + "): " + rect.getLength() + "x" + rect.getWidth());
+        }
+    }
+}
+  Rectangle Class:
+public class Rectangle {
+    private int x, y, length, width;
+
+    public Rectangle(int x, int y, int length, int width) {
+        this.x = x;
+        this.y = y;
+        this.length = length;
+        this.width = width;
+    }
+
+    // Getters
+    public int getX() { return x; }
+    public int getY() { return y; }
+    public int getLength() { return length; }
+    public int getWidth() { return width; }
+}
+Main Class Skeleton:
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class QuadtreeApp {
+    public static void main(String[] args) {
+        if (args.length < 1) {
+            System.out.println("Please provide the path to the .cmmd file.");
+            return;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(args[0]))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                // Parse and execute commands here
+                System.out.println("Processing command: " + line);
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading the file: " + e.getMessage());
+        }
+    }
+}
+
