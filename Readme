@@ -1,0 +1,31 @@
+# Project 1 Supplement – 1
+
+## Objective
+This project involves creating, documenting, and testing three functions using Python to gain familiarity with supplemental assignments.
+
+## Functions
+
+### 1. `calculate_sum(a, b)`
+Calculates the sum of two numbers.
+- **Parameters:**
+  - `a` (int or float): The first number
+  - `b` (int or float): The second number
+- **Returns:** The sum of `a` and `b`.
+
+### 2. `string_length(s)`
+Returns the length of a string.
+- **Parameters:**
+  - `s` (str): The input string
+- **Returns:** The length of the string.
+
+### 3. `update_dictionary(d, key, value)`
+Updates a dictionary with a key-value pair.
+- **Parameters:**
+  - `d` (dict): The dictionary to update
+  - `key`: The key to update or add
+  - `value`: The value to add or increment
+- **Returns:** None
+
+## Testing
+Unit tests for the functions are located in `test_functions.py`. Run the tests with:
+```bash
