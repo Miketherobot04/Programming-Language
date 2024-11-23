@@ -1,0 +1,53 @@
+import unittest
+from area_functions import rectangle_area, triangle_area, circle_area
+
+class TestAreaFunctions(unittest.TestCase):
+    def test_rectangle_area(self):
+        self.assertEqual(rectangle_area(5, 10), 50)
+        self.assertEqual(rectangle_area(0, 10), 0)
+        self.assertEqual(rectangle_area(-5, 10), None)
+
+    def test_triangle_area(self):
+        self.assertEqual(triangle_area(10, 5), 25.0)
+        self.assertEqual(triangle_area(0, 5), 0)
+        self.assertEqual(triangle_area(-10, 5), None)
+
+    def test_circle_area(self):
+        self.assertAlmostEqual(circle_area(7), 153.938, places=3)
+        self.assertEqual(circle_area(0), 0)
+        self.assertEqual(circle_area(-7), None)
+
+if __name__ == "__main__":
+    unittest.main()
+
+# Area Calculation Functions
+
+## Overview
+This project provides three functions to calculate the area of geometric shapes:
+- Rectangle
+- Triangle
+- Circle
+
+## Functions
+### `rectangle_area(length, width)`
+- **Description**: Calculates the area of a rectangle.
+- **Parameters**: 
+  - `length` (float): The length of the rectangle.
+  - `width` (float): The width of the rectangle.
+- **Returns**: The area (float) or `None` if input is invalid.
+
+### `triangle_area(base, height)`
+- **Description**: Calculates the area of a triangle.
+- **Parameters**: 
+  - `base` (float): The base of the triangle.
+  - `height` (float): The height of the triangle.
+- **Returns**: The area (float) or `None` if input is invalid.
+
+### `circle_area(radius)`
+- **Description**: Calculates the area of a circle.
+- **Parameters**: 
+  - `radius` (float): The radius of the circle.
+- **Returns**: The area (float) or `None` if input is invalid.
+
+## Testing
+Unit tests are provided in `test_area_functions.py` and can be run with:
